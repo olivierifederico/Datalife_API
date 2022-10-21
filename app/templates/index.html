@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap/dist/css/jsvectormap.min.css" />
+  <link rel="stylesheet" href="{{url_for('static', path='/css/styles.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsvectormap/dist/maps/world.js"></script>
+  <script>
+    var map = new jsVectorMap({
+      selector: "#map",
+      map: "world",
+      regionStyle: {
+        initial: {
+          fill: 'grey'
+        }
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>DataLife</h1>
+    </header>
+    <main>
+      <div id="selector">
+        <h3>Paises con STDEV > 2.5(Esperanza de vida)</h3>
+        <ul>
+          <li>{{pais0}}</li>
+          <li>{{pais1}}</li>
+          <li>{{pais2}}</li>
+          <li>{{pais3}}</li>
+          <li>{{pais4}}</li>
+          <li>{{pais5}}</li>
+          <li>{{pais6}}</li>
+          <li>{{pais7}}</li>
+        </ul>
+        <div id = 'selectorMetrica'>
+          <label for="metrica">Metrica</label>
+          <select name="metrica">
+            <option value="value1">Metrica 1</option>
+            <option value="value2" selected>Metrica 2</option>
+            <option value="value3">Metrica 3</option>
+          </select>
+        </div>
+      </div>
+      <div id="mapa">
+        <div id="map">
+        </div>
+        <div id="slidecontainer">
+          <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p></p>
+    </footer>
+  </div>
+</body>
+
+</html>
