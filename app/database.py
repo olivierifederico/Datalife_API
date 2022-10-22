@@ -94,10 +94,11 @@ def get_coordinates():
         db.connect()
     except:
         pass
-    data = Locacion.select(Locacion.pais,Locacion.longitude,Locacion.latitude).limit(5)
+    data = Locacion.select().limit(5)
     db.close()
     return data
 
+    
 #Devuelve una lista con la lista de los paises y un dataframe con los dataframes historicos
 def get_countrystdv():
     try:
@@ -114,3 +115,4 @@ def get_countrystdv():
     data = data[bool_lista]
     lista_paises = data['nombre'].unique()
     return [lista_paises,data]
+
