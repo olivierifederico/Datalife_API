@@ -5,8 +5,8 @@ from peewee import PostgresqlDatabase
 DBNAME = '***REMOVED***'
 DBUSER = '***REMOVED***'
 DBKEY = '***REMOVED***'
-DBHOST = 'localhost'
-DBPORT = 5432
+#DBHOST = 'localhost'
+#DBPORT = 5432
 
 DBHOST = '***REMOVED***'
 DBPORT = ***REMOVED***
