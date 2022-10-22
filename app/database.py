@@ -73,6 +73,14 @@ class Esperanza_saludable(DataLife):
     year = IntegerField()
     esp_vida_salud_60 = FloatField()
 
+class Alfa2(DataLife):
+    TextField(primary_key=True)
+    nombre_espanol = CharField()
+    nombre_ingles = CharField()
+    alfa3 = ForeignKeyField(Paises)
+    latitud = FloatField()
+    longitud = FloatField()
+
 #Funcion para crear las tablas
 def create_tables():
     db.connect()
