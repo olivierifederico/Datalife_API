@@ -74,7 +74,7 @@ class Esperanza_saludable(DataLife):
     esp_vida_salud_60 = FloatField()
 
 class Alfa2(DataLife):
-    TextField(primary_key=True)
+    alfa2 = TextField(primary_key=True)
     nombre_espanol = CharField()
     nombre_ingles = CharField()
     alfa3 = ForeignKeyField(Paises)
@@ -102,7 +102,7 @@ def get_coordinates():
         db.connect()
     except:
         pass
-    data = Locacion.select().limit(5)
+    data = Alfa2.select().limit(5)
     db.close()
     return data
 
@@ -123,4 +123,3 @@ def get_countrystdv():
     data = data[bool_lista]
     lista_paises = data['nombre'].unique()
     return [lista_paises,data]
-
