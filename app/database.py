@@ -138,13 +138,11 @@ def get_countrystdv():
         datax = base[i]['alfa3']
         filt = data['alfa3'] == datax
         df = data[filt].reset_index(drop=True)
+        #Agregado de valores al diccionario
         keylist = df['year'].values
         valuelist = df['esperanza'].values
-        #print(base)
         if base[i]['alfa3'] == df['alfa3'][0]:
             dictzipped = dict(zip(keylist,valuelist))
             base[i]["esperanza"] = dictzipped
     db.close()
     return base
-
-print(get_countrystdv())
