@@ -109,35 +109,14 @@ def create_tables():
 
 #Api Front
 
-<<<<<<< HEAD
-"""def get_coordinates():
-    try:
-        db.connect()
-    except:
-        pass
-    data = Locacion.select(Locacion.pais,Locacion.longitude,Locacion.latitude).limit(5)
-    db.close()
-    return data"""
-
-#Devuelve una lista con la lista de los paises y un dataframe con los dataframes historicos
-"""def get_countrystdv():
-=======
 #Devuelve una lista con la lista de los paises y un dataframe con los datos historicos
 def get_countrystdv():
->>>>>>> 7b77fc64fc11436c9d68be737cc3b2db62992056
     try:
         db.connect()
     except:
         pass
     #chequear que los a;os funcionen bien cuando se hacen multiples joins
-<<<<<<< HEAD
-    data = Pais.select(Pais.pais_id,Pais.nombre,Esperanza.esperanza,Esperanza.year).join(Esperanza,on=(Paises.pais_id == Esperanza.pais_id))
-=======
-
-    #Query
-    data = Pais.select(Pais.pais_id,Pais.nombre_EN,Esperanza.year,Esperanza.esperanza).join(Esperanza,on=(Pais.pais_id == Esperanza.pais_id))
-    #to Dataframe
->>>>>>> 7b77fc64fc11436c9d68be737cc3b2db62992056
+    data = Pais.select(Pais.pais_id,Pais.nombre,Esperanza.esperanza,Esperanza.year).join(Esperanza,on=(Pais.pais_id == Esperanza.pais_id))
     data = pd.DataFrame(data.dicts())
     #stddev calc
     data2 = data.groupby('pais_id')[['esperanza']].std().sort_values(by='esperanza',ascending=False).reset_index()
@@ -146,11 +125,6 @@ def get_countrystdv():
     #filtro
     bool_lista = data['pais_id'].isin(lista_paises)
     data = data[bool_lista]
-<<<<<<< HEAD
-    lista_paises = data['nombre'].unique()
-    return [lista_paises,data]"""
-
-=======
     #Preparacion diccionario
     base = data.drop(['esperanza','year'],axis=1).groupby('pais_id')
     base = base.first().reset_index().to_dict(orient='index')
@@ -166,4 +140,3 @@ def get_countrystdv():
             base[i]["esperanza"] = dictzipped
     db.close()
     return base
->>>>>>> 7b77fc64fc11436c9d68be737cc3b2db62992056
