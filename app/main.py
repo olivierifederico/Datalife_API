@@ -4,7 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from connector import get_tables
-from database import create_tables,get_coordinates,get_countrystdv
+from database import create_tables,get_countrystdv
 
 #Instanciar FastApi
 

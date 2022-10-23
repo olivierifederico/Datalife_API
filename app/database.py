@@ -73,13 +73,19 @@ class Esperanza_saludable(DataLife):
     year = IntegerField()
     esp_vida_salud_60 = FloatField()
 
-class Alfa2(DataLife):
-    alfa2 = TextField(primary_key=True)
-    nombre_espanol = CharField()
-    nombre_ingles = CharField()
-    alfa3 = ForeignKeyField(Paises)
+class Pais(DataLife):
+    pais_id=TextField(primary_key=True)
+    nombre_ESP = CharField()
+    nombre_EN = CharField()
+    codigo_pais = CharField()
     latitud = FloatField()
-    longitud = FloatField()
+    longitud= FloatField()
+
+class Esperanza(DataLife):
+    id = IntegerField(primary_key=True)
+    pais_id = ForeignKeyField(Pais)
+    year = IntegerField()
+    esperanza = FloatField()
 
 #Funcion para crear las tablas
 def create_tables():
@@ -97,21 +103,6 @@ def create_tables():
 
 #Api Front
 
-def get_coordinates():
-    try:
-        db.connect()
-    except:
-        pass
-    data = Alfa2.select(Alfa2.alfa2.alias('a2'),Alfa2.nombre_ingles).limit(8)
-    db.close()
-    #BORRAR
-    data = pd.DataFrame(data.dicts())
-    data = data.to_dict(orient='index')
-    print(data)
-    #BORRAR
-    return data
-
-
 #Devuelve una lista con la lista de los paises y un dataframe con los datos historicos
 def get_countrystdv():
     try:
@@ -121,27 +112,27 @@ def get_countrystdv():
     #chequear que los a;os funcionen bien cuando se hacen multiples joins
 
     #Query
-    data = Alfa2.select(Alfa2.alfa2,Alfa2.alfa3,Alfa2.nombre_ingles,Esperanza.year,Esperanza.esperanza).join(Esperanza,on=(Alfa2.alfa3 == Esperanza.pais_id))
+    data = Pais.select(Pais.pais_id,Pais.nombre_EN,Esperanza.year,Esperanza.esperanza).join(Esperanza,on=(Pais.pais_id == Esperanza.pais_id))
     #to Dataframe
     data = pd.DataFrame(data.dicts())
     #stddev calc
-    data2 = data.groupby('alfa3')[['esperanza']].std().sort_values(by='esperanza',ascending=False).reset_index()
+    data2 = data.groupby('pais_id')[['esperanza']].std().sort_values(by='esperanza',ascending=False).reset_index()
     data2 = data2[data2['esperanza']>2.5].head(8)
-    lista_paises = data2['alfa3'].values.tolist()
+    lista_paises = data2['pais_id'].values.tolist()
     #filtro
-    bool_lista = data['alfa3'].isin(lista_paises)
+    bool_lista = data['pais_id'].isin(lista_paises)
     data = data[bool_lista]
     #Preparacion diccionario
-    base = data.drop(['esperanza','year'],axis=1).groupby('alfa2')
+    base = data.drop(['esperanza','year'],axis=1).groupby('pais_id')
     base = base.first().reset_index().to_dict(orient='index')
     for i in base:
-        datax = base[i]['alfa3']
-        filt = data['alfa3'] == datax
+        datax = base[i]['pais_id']
+        filt = data['pais_id'] == datax
         df = data[filt].reset_index(drop=True)
         #Agregado de valores al diccionario
         keylist = df['year'].values
         valuelist = df['esperanza'].values
-        if base[i]['alfa3'] == df['alfa3'][0]:
+        if base[i]['pais_id'] == df['pais_id'][0]:
             dictzipped = dict(zip(keylist,valuelist))
             base[i]["esperanza"] = dictzipped
     db.close()
