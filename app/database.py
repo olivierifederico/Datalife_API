@@ -102,24 +102,49 @@ def get_coordinates():
         db.connect()
     except:
         pass
-    data = Alfa2.select().limit(5)
+    data = Alfa2.select(Alfa2.alfa2.alias('a2'),Alfa2.nombre_ingles).limit(8)
     db.close()
+    #BORRAR
+    data = pd.DataFrame(data.dicts())
+    data = data.to_dict(orient='index')
+    print(data)
+    #BORRAR
     return data
 
-    
-#Devuelve una lista con la lista de los paises y un dataframe con los dataframes historicos
+
+#Devuelve una lista con la lista de los paises y un dataframe con los datos historicos
 def get_countrystdv():
     try:
         db.connect()
     except:
         pass
     #chequear que los a;os funcionen bien cuando se hacen multiples joins
-    data = Paises.select(Paises.pais_id,Paises.nombre,Esperanza.esperanza,Esperanza.year).join(Esperanza,on=(Paises.pais_id == Esperanza.pais_id))
+
+    #Query
+    data = Alfa2.select(Alfa2.alfa2,Alfa2.alfa3,Alfa2.nombre_ingles,Esperanza.year,Esperanza.esperanza).join(Esperanza,on=(Alfa2.alfa3 == Esperanza.pais_id))
+    #to Dataframe
     data = pd.DataFrame(data.dicts())
-    data2 = data.groupby('pais_id')[['esperanza']].std().sort_values(by='esperanza',ascending=False).reset_index()
+    #stddev calc
+    data2 = data.groupby('alfa3')[['esperanza']].std().sort_values(by='esperanza',ascending=False).reset_index()
     data2 = data2[data2['esperanza']>2.5].head(8)
-    lista_paises = data2['pais_id'].values.tolist()
-    bool_lista = data['pais_id'].isin(lista_paises)
+    lista_paises = data2['alfa3'].values.tolist()
+    #filtro
+    bool_lista = data['alfa3'].isin(lista_paises)
     data = data[bool_lista]
-    lista_paises = data['nombre'].unique()
-    return [lista_paises,data]
+    #Preparacion diccionario
+    base = data.drop(['esperanza','year'],axis=1).groupby('alfa2')
+    base = base.first().reset_index().to_dict(orient='index')
+    for i in base:
+        datax = base[i]['alfa3']
+        filt = data['alfa3'] == datax
+        df = data[filt].reset_index(drop=True)
+        keylist = df['year'].values
+        valuelist = df['esperanza'].values
+        #print(base)
+        if base[i]['alfa3'] == df['alfa3'][0]:
+            dictzipped = dict(zip(keylist,valuelist))
+            base[i]["esperanza"] = dictzipped
+    db.close()
+    return base
+
+print(get_countrystdv())
