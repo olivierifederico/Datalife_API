@@ -30,3 +30,8 @@ def get_tables():
     data = db.get_tables()
     db.close()
     return data
+
+
+
+print(get_tables())
+
