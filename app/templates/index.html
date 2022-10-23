@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Datalife API</title>
+  <link rel="shortcut icon" href="{{url_for('static', path='/img/datalife_favicon.ico')}}" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap/dist/css/jsvectormap.min.css" />
   <link rel="stylesheet" href="{{url_for('static', path='/css/styles.css')}}">
   <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
@@ -18,6 +19,54 @@
         initial: {
           fill: 'grey'
         }
+      },
+      series:{
+        markers: [{
+          attribute: 'image',
+          legend: {
+            title: 'Some title!',
+            vertical: true
+          },
+          scale: {
+            marker1title: {
+              url: '../assets/images/marker.png',
+              offset: [10, 0]
+            },
+            marker2title: {
+              url: '../assets/images/marker2.png',
+              offset: [0, 0]
+            }
+          },
+          values: {
+            0: 'marker1title',
+            1: 'marker2title',
+            2: 'marker2title',
+            3: 'marker1title',
+          }
+        }],
+
+
+        regions: [{
+          attribute: 'fill',
+          legend: {
+            title: 'Something',
+          },
+          scale: {
+            scale1: 'yellow',
+            scale2: 'dodgerblue',
+            scale3: 'forestgreen',
+          },
+          values: {
+            "{{data[0]['pais_id']}}": 'scale1',
+            "{{data[1]['pais_id']}}": 'scale1',
+            "{{data[2]['pais_id']}}": 'scale2',
+            "{{data[3]['pais_id']}}": 'scale2',
+            "{{data[4]['pais_id']}}": 'scale2',
+            "{{data[5]['pais_id']}}": 'scale3',
+            "{{data[6]['pais_id']}}": 'scale3',
+            "{{data[7]['pais_id']}}": 'scale3',
+          }
+        }]
       }
     });
   </script>
@@ -32,14 +81,10 @@
       <div id="selector">
         <h3>Paises con STDEV > 2.5(Esperanza de vida)</h3>
         <ul>
-          <li>{{pais0}}</li>
-          <li>{{pais1}}</li>
-          <li>{{pais2}}</li>
-          <li>{{pais3}}</li>
-          <li>{{pais4}}</li>
-          <li>{{pais5}}</li>
-          <li>{{pais6}}</li>
-          <li>{{pais7}}</li>
+          <li>Esperanza:</li>
+          {% for i in data %}
+          <li>{{data[i]['nombre_EN']}} - 2000:{{data[i]['esperanza'][2000]}}</li>
+          {% endfor %}
         </ul>
         <div id = 'selectorMetrica'>
           <label for="metrica">Metrica</label>
@@ -59,7 +104,7 @@
       </div>
     </main>
     <footer>
-      <p></p>
+      <p>Copyright © 2022 Datalife, Inc.</p>
     </footer>
   </div>
 </body>

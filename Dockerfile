@@ -9,6 +9,8 @@ RUN pip install fastapi-login
 RUN pip install python-multipart
 RUN pip install wbgapi
 RUN pip install pandas
+RUN pip install aiofiles
+RUN pip install jinja2==3.0.3
 
 # Exposicion del puerto 80
 EXPOSE 80
