@@ -2,9 +2,6 @@
 from peewee import Model,TextField,CharField,IntegerField,ForeignKeyField,FloatField
 from connector import db
 import pandas as pd
-
-from data import dict_paises
-
 #Creacion del modelo de base de datos
 
 class DataLife(Model):
@@ -110,7 +107,7 @@ def create_tables():
 #Api Front
 
 #Devuelve una lista con la lista de los paises y un dataframe con los datos historicos
-def get_countrystdv():
+def data_front():
     try:
         db.connect()
     except:
