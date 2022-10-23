@@ -54,7 +54,7 @@
           scale: {
             scale1: 'yellow',
             scale2: 'dodgerblue',
-            scale3: 'lightgreen',
+            scale3: 'forestgreen',
           },
           values: {
             "{{data[0]['alfa2']}}": 'scale1',
@@ -81,14 +81,9 @@
       <div id="selector">
         <h3>Paises con STDEV > 2.5(Esperanza de vida)</h3>
         <ul>
-          <li>{{data[0]['nombre_ingles']}}</li>
-          <li>{{data[1]['nombre_ingles']}}</li>
-          <li>{{data[2]['nombre_ingles']}}</li>
-          <li>{{data[3]['nombre_ingles']}}</li>
-          <li>{{data[4]['nombre_ingles']}}</li>
-          <li>{{data[5]['nombre_ingles']}}</li>
-          <li>{{data[6]['nombre_ingles']}}</li>
-          <li>{{data[7]['nombre_ingles']}}</li>
+          {% for i in data %}
+          <li>{{data[i]['nombre_ingles']}} - {{data[i]['esperanza'][2000]}}</li>
+          {% endfor %}
         </ul>
         <div id = 'selectorMetrica'>
           <label for="metrica">Metrica</label>

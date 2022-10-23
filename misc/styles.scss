@@ -1,0 +1,113 @@
+//Colores
+$color-amarillo: #C9C423;
+$color-azul: #106CAF;
+$color-verde: #0EC232;
+$color-negro: #2D2D2D;
+
+//Reset
+* {
+    padding: 0px;
+    margin: 0px;
+    color: $color-negro;
+}
+
+//
+#container {
+    margin: auto;
+    width: 90vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 0.8fr 0.1fr;
+    grid-template-areas:
+        "topx"
+        "midx"
+        "botx";
+
+    header {
+        grid-area: topx;
+    }
+
+    main {
+        grid-area: midx;
+        display: grid;
+        grid-template-columns: 0.3fr 0.7fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+            "selector mapa";
+
+        #selector {
+            grid-area: selector;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 0.2fr 0.5fr 0.3fr;
+            grid-template-areas:
+                "titulo"
+                "lista"
+                "metrica";
+
+            h3 {
+                grid-area: metrica;
+                width: 100%;
+                margin-bottom: 150px;
+            }
+
+            #selectorMetrica {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+        }
+
+        #mapa {
+            grid-area: mapa;
+            justify-content: center;
+            width: 100%;
+            height: 700px;
+
+            #map {
+                margin-left: 150px;
+            }
+        }
+
+        #slidecontainer {
+            display: flex;
+            justify-content: center;
+
+
+            .slider {
+                width: 75%;
+                height: 15px;
+                border-radius: 5px;
+                background: #d3d3d3;
+                outline: none;
+                opacity: 0.7;
+                -webkit-transition: .2s;
+                transition: opacity .2s;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: #04AA6D;
+                cursor: pointer;
+            }
+
+            .slider::-moz-range-thumb {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: #04AA6D;
+                cursor: pointer;
+            }
+        }
+    }
+
+    footer {
+        grid-area: botx;
+    }
+}
