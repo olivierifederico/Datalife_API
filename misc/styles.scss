@@ -47,12 +47,13 @@ $color-negro: #2D2D2D;
                 "metrica";
 
             h3 {
-                grid-area: metrica;
+                grid-area: titulo;
                 width: 100%;
                 margin-bottom: 150px;
             }
 
             #selectorMetrica {
+                grid-area: metrica;
                 display: flex;
                 justify-content: center;
                 align-items: center;

@@ -31,11 +31,12 @@
   grid-template-areas: "titulo" "lista" "metrica";
 }
 #container main #selector h3 {
-  grid-area: metrica;
+  grid-area: titulo;
   width: 100%;
   margin-bottom: 150px;
 }
 #container main #selector #selectorMetrica {
+  grid-area: metrica;
   display: flex;
   justify-content: center;
   align-items: center;
