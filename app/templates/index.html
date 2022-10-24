@@ -12,6 +12,8 @@
   <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsvectormap/dist/maps/world.js"></script>
   <script>
+
+
     var map = new jsVectorMap({
       selector: "#map",
       map: "world",
@@ -20,7 +22,7 @@
           fill: 'grey'
         }
       },
-      series:{
+      series: {
         markers: [{
           attribute: 'image',
           legend: {
@@ -69,6 +71,7 @@
         }]
       }
     });
+    
   </script>
 </head>
 
@@ -86,11 +89,11 @@
           <li>{{data[i]['nombre_EN']}} - 2000:{{data[i]['esperanza'][2000]}}</li>
           {% endfor %}
         </ul>
-        <div id = 'selectorMetrica'>
+        <div id='selectorMetrica'>
           <label for="metrica">Metrica</label>
-          <select name="metrica">
-            <option value="value1">Metrica 1</option>
-            <option value="value2" selected>Metrica 2</option>
+          <select name="metrica" id="metrica">
+            <option value="life_exp" selected>Esperanza de vida</option>
+            <option value="value2">Metrica 2</option>
             <option value="value3">Metrica 3</option>
           </select>
         </div>
@@ -108,5 +111,14 @@
     </footer>
   </div>
 </body>
+<script>
+  const $select = document.querySelector("#metrica")
+
+  const opcionCambiada = () => {
+    console.log("Cambio");
+  };
+
+  $select.addEventListener("change", opcionCambiada);
+</script>
 
 </html>
