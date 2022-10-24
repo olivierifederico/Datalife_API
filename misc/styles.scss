@@ -31,12 +31,12 @@ $color-negro: #2D2D2D;
     main {
         grid-area: midx;
         display: grid;
-        grid-template-columns: 0.3fr 0.7fr;
+        grid-template-columns: 30% 70%;
         grid-template-rows: 1fr;
         grid-template-areas:
             "selector mapa";
 
-        #selector {
+        #contSelector {
             grid-area: selector;
             display: grid;
             grid-template-columns: 1fr;
@@ -49,10 +49,9 @@ $color-negro: #2D2D2D;
             h3 {
                 grid-area: titulo;
                 width: 100%;
-                margin-bottom: 150px;
             }
 
-            #selectorMetrica {
+            #contMetrica {
                 grid-area: metrica;
                 display: flex;
                 justify-content: center;
@@ -62,15 +61,11 @@ $color-negro: #2D2D2D;
             }
         }
 
-        #mapa {
+        #contMapa {
             grid-area: mapa;
-            justify-content: center;
-            width: 100%;
+            display: grid;
             height: 700px;
 
-            #map {
-                margin-left: 150px;
-            }
         }
 
         #slidecontainer {

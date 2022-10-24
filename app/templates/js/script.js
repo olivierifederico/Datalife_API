@@ -58,12 +58,18 @@ var map = new jsVectorMap({
   });
 //segunda parte
 
+const $mapTitle = document.getElementById('mapTitle')
+
 const $select = document.querySelector("#metrica")
 
 const cambioMetrica = () => {
   console.log($select.selectedIndex);
   if($select.selectedIndex == 0) {
-    console.log('Esperanza de vida perro')
+    console.log('Esperanza de vida perro');
+    $mapTitle.innerText = "Esperanza de vida";
+  }else if($select.selectedIndex == 1) {
+    console.log('Metrica 2');
+    $mapTitle.innerText = "Metrica 2";
   }
 };
 
