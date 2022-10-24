@@ -58,6 +58,11 @@ $color-negro: #2D2D2D;
                 justify-content: center;
                 align-items: center;
                 width: 100%;
+                #h3 {
+                    grid-area: titulo;
+                    width: 100%;
+                    margin-bottom: 150px;
+                }
             }
         }
 
