@@ -57,13 +57,6 @@ class Ambiente(DataLife):
     year = IntegerField()
     exposcion_contaminacion = FloatField()
 
-class Locacion(DataLife):
-    id = IntegerField(primary_key=True)
-    pais_id = ForeignKeyField(Pais)
-    pais = CharField()
-    longitude = FloatField()
-    latitude = FloatField()
-
 class Terciario(DataLife):
     id = IntegerField(primary_key=True)
     pais_id = ForeignKeyField(Pais)
@@ -76,19 +69,6 @@ class Esperanza_saludable(DataLife):
     year = IntegerField()
     esp_vida_salud_60 = FloatField()
 
-class Pais(DataLife):
-    pais_id=TextField(primary_key=True)
-    nombre_ESP = CharField()
-    nombre_EN = CharField()
-    codigo_pais = CharField()
-    latitud = FloatField()
-    longitud= FloatField()
-
-class Esperanza(DataLife):
-    id = IntegerField(primary_key=True)
-    pais_id = ForeignKeyField(Pais)
-    year = IntegerField()
-    esperanza = FloatField()
 
 #Funcion para crear las tablas
 def create_tables():
@@ -113,7 +93,7 @@ def data_front():
     except:
         pass
     #chequear que los a;os funcionen bien cuando se hacen multiples joins
-    data_esperanza = Pais.select(Pais.pais_id,Pais.nombre_EN,Esperanza.esperanza,Esperanza.year).join(Esperanza,on=(Pais.pais_id == Esperanza.pais_id))
+    data_esperanza = Pais.select(Pais.pais_id,Pais.nombre_EN,Pais.latitud,Pais.longitud,Esperanza.esperanza,Esperanza.year).join(Esperanza,on=(Pais.pais_id == Esperanza.pais_id))
     data_esperanza = pd.DataFrame(data_esperanza.dicts())
     #stddev calc
     data2 = data_esperanza.groupby('pais_id')[['esperanza']].std().sort_values(by='esperanza',ascending=False).reset_index()
@@ -176,3 +156,6 @@ def data_front():
             base[i]["credito_privado"] = dict_cred_priv
     db.close()
     return base
+
+
+print(data_front())
