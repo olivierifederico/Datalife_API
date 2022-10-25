@@ -23,7 +23,7 @@
         <ul>
           <li>Esperanza:</li>
           {% for i in data %}
-          <li>{{data[i]['nombre_EN']}} - 2000:{{data[i]['esperanza'][2000]}}</li>
+          <li><button id="{{data[i]['pais_id']}}">{{data[i]['nombre_EN']}}</button></li>
           {% endfor %}
         </ul>
         <div id='contMetrica'>
@@ -45,6 +45,7 @@
       </div>
     </main>
     <footer>
+      <button id="focus">Focus</button>
       <p>Copyright © 2022 Datalife, Inc.</p>
     </footer>
   </div>

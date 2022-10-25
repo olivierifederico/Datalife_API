@@ -19,7 +19,7 @@
 #container main {
   grid-area: midx;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 0.15fr 0.85fr;
   grid-template-rows: 1fr;
   grid-template-areas: "selector mapa";
 }
@@ -27,7 +27,7 @@
   grid-area: selector;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 0.5fr 0.3fr;
+  grid-template-rows: 0.1fr 0.8fr 0.1fr;
   grid-template-areas: "titulo" "lista" "metrica";
 }
 #container main #contSelector h3 {
@@ -36,19 +36,17 @@
 }
 #container main #contSelector #contMetrica {
   grid-area: metrica;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
 }
 #container main #contMapa {
   grid-area: mapa;
   display: grid;
-  height: 700px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.05fr 0.9fr 0.05fr;
+  grid-template-areas: "mapTitle" "mapBody" "mapRange";
 }
 #container main #slidecontainer {
-  display: flex;
-  justify-content: center;
+  background-color: none;
 }
 #container main #slidecontainer .slider {
   width: 75%;

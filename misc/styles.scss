@@ -10,8 +10,6 @@ $color-negro: #2D2D2D;
     margin: 0px;
     color: $color-negro;
 }
-
-//
 #container {
     margin: auto;
     width: 90vw;
@@ -23,56 +21,46 @@ $color-negro: #2D2D2D;
         "topx"
         "midx"
         "botx";
-
     header {
         grid-area: topx;
     }
-
     main {
         grid-area: midx;
         display: grid;
-        grid-template-columns: 30% 70%;
+        grid-template-columns: 0.15fr 0.85fr;
         grid-template-rows: 1fr;
         grid-template-areas:
             "selector mapa";
-
         #contSelector {
             grid-area: selector;
             display: grid;
             grid-template-columns: 1fr;
-            grid-template-rows: 0.2fr 0.5fr 0.3fr;
+            grid-template-rows: 0.1fr 0.8fr 0.1fr;
             grid-template-areas:
                 "titulo"
                 "lista"
                 "metrica";
-
             h3 {
                 grid-area: titulo;
                 width: 100%;
             }
-
             #contMetrica {
                 grid-area: metrica;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                
+                width: 100%;  
             }
         }
-
         #contMapa {
             grid-area: mapa;
             display: grid;
-            height: 700px;
-
+            grid-template-columns: 1fr;
+            grid-template-rows: 0.05fr 0.9fr 0.05fr;
+            grid-template-areas:
+                "mapTitle"
+                "mapBody"
+                "mapRange";
         }
-
         #slidecontainer {
-            display: flex;
-            justify-content: center;
-
-
+            background-color: none;
             .slider {
                 width: 75%;
                 height: 15px;
@@ -83,7 +71,6 @@ $color-negro: #2D2D2D;
                 -webkit-transition: .2s;
                 transition: opacity .2s;
             }
-
             .slider::-webkit-slider-thumb {
                 -webkit-appearance: none;
                 appearance: none;
@@ -93,7 +80,6 @@ $color-negro: #2D2D2D;
                 background: #04AA6D;
                 cursor: pointer;
             }
-
             .slider::-moz-range-thumb {
                 width: 25px;
                 height: 25px;
