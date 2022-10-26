@@ -156,6 +156,3 @@ def data_front():
             base[i]["credito_privado"] = dict_cred_priv
     db.close()
     return base
-
-
-print(data_front())

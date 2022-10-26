@@ -12,6 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsvectormap/dist/maps/world.js"></script>
 </head>
+
 <body>
   <div id="container">
     <header>
@@ -37,10 +38,18 @@
       </div>
       <div id="contMapa">
         <h3 id="mapTitle">Esperanza de vida</h3>
-        <div id="map">
+        <div>
+          
+          <div id="map">
+            <div id="contData">
+              <h5 id="dataTitle">Info</h5>
+              <p>the real wea</p>
+            </div>
+          </div>
+
         </div>
         <div id="slidecontainer">
-          <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+          <input type="range" min="1990" max="2019" value="1990" class="slider" id="year">
         </div>
       </div>
     </main>
@@ -51,8 +60,9 @@
   </div>
 </body>
 {% block javascript %}
- <script type="text/javascript">
+<script type="text/javascript">
   {% include "js/script.js" %}
- </script>
- {% endblock %}
+</script>
+{% endblock %}
+
 </html>

@@ -1,4 +1,11 @@
 //primer parte
+
+var markers = [
+{% for i in data %}
+{ name: "{{data[i]['nombre_EN']}}", coords: ["{{data[i]['latitud']}}", "{{data[i]['longitud']}}"] },
+{% endfor %}
+];
+
 var map = new jsVectorMap({
   selector: "#map",
   map: "world",
@@ -7,19 +14,26 @@ var map = new jsVectorMap({
       fill: '#d1d4db'
     }
   },
-  onRegionSelected: function (index, isSelected, selectedRegions) {
-    console.log(index, isSelected, selectedRegions);
-  },
-  onMarkerSelected: function (code, isSelected, selectedMarkers) {
-    console.log(code, isSelected, selectedMarkers)
-  },
-  onRegionTooltipShow: function (event, tooltip, code) {
-    if (code === 'RU') {
-      tooltip.getElement().innerHTML = tooltip.text() + ' <b>(Hello Russia)</b>'
+  labels: {
+    markers: {
+      render: (marker) => marker.name
     }
   },
-  onMarkerTooltipShow: function (event, tooltip, index) {
-    tooltip.getElement().innerHTML = '<h5 class="mb-0">' + tooltip.text() + '</h5>' + '<p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><small class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>'
+  markers : markers,
+  markersSelectable: true,
+  selectedMarkers: markers.map((marker, index) => {
+    var name = marker.name;
+    if (name === "Russia" || name === "Brazil") {
+      return index;
+    }
+  }),
+  markerLabelStyle: {
+    initial: {
+      fontFamily: "Roboto",
+      fontWeight: 700,
+      fontSize: 22,
+      backgroundColor: 'red'
+    }
   },
   series: {
     markers: [{
@@ -30,11 +44,11 @@ var map = new jsVectorMap({
       },
       scale: {
         marker1title: {
-          url: '../assets/images/marker.png',
-          offset: [10, 0]
+          url: 'https://picsum.photos/200',
+          offset: [10, 300]
         },
         marker2title: {
-          url: '../assets/images/marker2.png',
+          url: 'https://picsum.photos/200',
           offset: [0, 0]
         }
       },
@@ -45,8 +59,6 @@ var map = new jsVectorMap({
         3: 'marker1title',
       }
     }],
-
-
     regions: [{
       attribute: 'fill',
       legend: {
@@ -78,20 +90,39 @@ document.querySelector('#{{data[i]["pais_id"]}}').addEventListener('click', () =
 {% endfor %}
 
 
-const $mapTitle = document.getElementById('mapTitle')
+const $mapTitle = document.getElementById('mapTitle');
+const $select = document.querySelector("#metrica");
+const $dataTitle = document.getElementById('dataTitle');
+const $year = document.querySelector('#year')
 
-const $select = document.querySelector("#metrica")
+const yearMetric = () => {
+  const indexMetrica = $select.selectedIndex;
+  const valorYear = $year.value;
+  const seleccionFinal = "Metrica seleccionada:"+indexMetrica+" del a;o:"+valorYear
+  $dataTitle.innerText = seleccionFinal
+}
 
 const cambioMetrica = () => {
   console.log($select.selectedIndex);
   if ($select.selectedIndex == 0) {
     console.log('Esperanza de vida perro');
     $mapTitle.innerText = "Esperanza de vida";
+    $dataTitle.innerText = 'Esperanza de vida';
   } else if ($select.selectedIndex == 1) {
     console.log('Metrica 2');
     $mapTitle.innerText = "Metrica 2";
+    $dataTitle.innerText = 'Metrica 2';
+  } else if ($select.selectedIndex == 2){
+    console.log('Metrica 3')
+    $mapTitle.innerText = "Metrica 3";
+    $dataTitle.innerText = 'Metrica 3';
   }
 };
 
 
-$select.addEventListener("change", cambioMetrica);
+$select.addEventListener("change", yearMetric);
+$year.addEventListener("change", yearMetric)
+
+window.addEventListener('resize', () => {
+  map.updateSize()
+})

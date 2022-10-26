@@ -27,7 +27,7 @@ $color-negro: #2D2D2D;
     main {
         grid-area: midx;
         display: grid;
-        grid-template-columns: 0.15fr 0.85fr;
+        grid-template-columns: 0.25fr 0.75fr;
         grid-template-rows: 1fr;
         grid-template-areas:
             "selector mapa";
@@ -58,6 +58,18 @@ $color-negro: #2D2D2D;
                 "mapTitle"
                 "mapBody"
                 "mapRange";
+                #contData {
+                    height: 150px;
+                    width: 100px;
+                    background-color: #2D2D2D;
+                    position: absolute;
+                    top: 30%;
+                    left: 30%;
+                    text-align: center;
+                    p,h5 {
+                        color:wheat;
+                    }
+                }
         }
         #slidecontainer {
             background-color: none;
