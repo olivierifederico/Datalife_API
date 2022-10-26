@@ -46,15 +46,15 @@
   grid-template-areas: "mapTitle" "mapBody" "mapRange";
 }
 #container main #contMapa #contData {
-  height: 150px;
-  width: 100px;
+  height: 300px;
+  width: 200px;
   background-color: #2D2D2D;
   position: absolute;
   top: 30%;
   left: 30%;
   text-align: center;
 }
-#container main #contMapa #contData p, #container main #contMapa #contData h5 {
+#container main #contMapa #contData p, #container main #contMapa #contData li, #container main #contMapa #contData h5 {
   color: wheat;
 }
 #container main #slidecontainer {

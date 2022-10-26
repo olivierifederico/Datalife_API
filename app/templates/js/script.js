@@ -1,10 +1,17 @@
 //primer parte
 
-var markers = [
-{% for i in data %}
-{ name: "{{data[i]['nombre_EN']}}", coords: ["{{data[i]['latitud']}}", "{{data[i]['longitud']}}"] },
-{% endfor %}
-];
+const nan = "No hay datos"
+const paises = {{ data | safe }}
+
+console.log(paises)
+
+var markers = [];
+
+for (i in paises) {
+  markers.push({ name: paises[i]['nombre_EN'], coords: [paises[i]['latitud'], paises[i]['longitud']] })
+}
+
+
 
 var map = new jsVectorMap({
   selector: "#map",
@@ -19,7 +26,7 @@ var map = new jsVectorMap({
       render: (marker) => marker.name
     }
   },
-  markers : markers,
+  markers: markers,
   markersSelectable: true,
   selectedMarkers: markers.map((marker, index) => {
     var name = marker.name;
@@ -82,6 +89,8 @@ var map = new jsVectorMap({
     }]
   }
 });
+
+
 //segunda parte
 {% for i in data %}
 document.querySelector('#{{data[i]["pais_id"]}}').addEventListener('click', () => {
@@ -90,35 +99,38 @@ document.querySelector('#{{data[i]["pais_id"]}}').addEventListener('click', () =
 {% endfor %}
 
 
+
 const $mapTitle = document.getElementById('mapTitle');
 const $select = document.querySelector("#metrica");
 const $dataTitle = document.getElementById('dataTitle');
 const $year = document.querySelector('#year')
+const $li0 = document.getElementById('pais0')
+const $li1 = document.getElementById('pais1')
+const $li2 = document.getElementById('pais2')
+const $li3 = document.getElementById('pais3')
+const $li4 = document.getElementById('pais4')
+const $li5 = document.getElementById('pais5')
+const $li6 = document.getElementById('pais6')
+const $li7 = document.getElementById('pais7')
 
 const yearMetric = () => {
   const indexMetrica = $select.selectedIndex;
-  const valorYear = $year.value;
-  const seleccionFinal = "Metrica seleccionada:"+indexMetrica+" del a;o:"+valorYear
-  $dataTitle.innerText = seleccionFinal
-}
-
-const cambioMetrica = () => {
-  console.log($select.selectedIndex);
-  if ($select.selectedIndex == 0) {
-    console.log('Esperanza de vida perro');
-    $mapTitle.innerText = "Esperanza de vida";
-    $dataTitle.innerText = 'Esperanza de vida';
-  } else if ($select.selectedIndex == 1) {
-    console.log('Metrica 2');
-    $mapTitle.innerText = "Metrica 2";
-    $dataTitle.innerText = 'Metrica 2';
-  } else if ($select.selectedIndex == 2){
-    console.log('Metrica 3')
-    $mapTitle.innerText = "Metrica 3";
-    $dataTitle.innerText = 'Metrica 3';
+  if(indexMetrica == 0){
+    var metrica = 'esperanza'
   }
-};
-
+  var valorYear = $year.value;
+  valorYear = valorYear.toString()
+  const seleccionFinal = "Metrica seleccionada:" + indexMetrica + " del a;o:" + valorYear
+  $dataTitle.innerText = seleccionFinal
+  $li0.innerText = paises[0][metrica][valorYear]
+  $li1.innerText = paises[1][metrica][valorYear]
+  $li2.innerText = paises[2][metrica][valorYear]
+  $li3.innerText = paises[3][metrica][valorYear]
+  $li4.innerText = paises[4][metrica][valorYear]
+  $li5.innerText = paises[5][metrica][valorYear]
+  $li6.innerText = paises[6][metrica][valorYear]
+  $li7.innerText = paises[7][metrica][valorYear]
+}
 
 $select.addEventListener("change", yearMetric);
 $year.addEventListener("change", yearMetric)
