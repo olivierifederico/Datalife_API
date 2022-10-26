@@ -5,8 +5,8 @@ from peewee import PostgresqlDatabase
 DBNAME = '***REMOVED***'
 DBUSER = '***REMOVED***'
 DBKEY = '***REMOVED***'
-#DBHOST = 'localhost'
-#DBPORT = 5432
+DBHOST = 'localhost'
+DBPORT = 5432
 
 DBHOST = '***REMOVED***'
 DBPORT = ***REMOVED***
@@ -32,9 +32,5 @@ def get_tables():
     return data
 
 
-<<<<<<< HEAD
 
-print(get_tables())
 
-=======
->>>>>>> 7b77fc64fc11436c9d68be737cc3b2db62992056
