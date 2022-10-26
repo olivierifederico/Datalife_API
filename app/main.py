@@ -4,7 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from connector import get_tables
-from database import create_tables,get_countrystdv
+from database import create_tables,data_front
 
 #Instanciar FastApi
 
@@ -20,7 +20,7 @@ templates = Jinja2Templates(directory="templates")
 async def index(request:Request):
     return templates.TemplateResponse('index.html',{
         "request":request,
-        'data':get_countrystdv()})
+        'data':data_front()})
 
 @app.get("/tablas")
 async def tablas():

@@ -11,65 +11,6 @@
   <link rel="stylesheet" href="{{url_for('static', path='/css/styles.css')}}">
   <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsvectormap/dist/maps/world.js"></script>
-  <script>
-    var map = new jsVectorMap({
-      selector: "#map",
-      map: "world",
-      regionStyle: {
-        initial: {
-          fill: 'grey'
-        }
-      },
-      series:{
-        markers: [{
-          attribute: 'image',
-          legend: {
-            title: 'Some title!',
-            vertical: true
-          },
-          scale: {
-            marker1title: {
-              url: '../assets/images/marker.png',
-              offset: [10, 0]
-            },
-            marker2title: {
-              url: '../assets/images/marker2.png',
-              offset: [0, 0]
-            }
-          },
-          values: {
-            0: 'marker1title',
-            1: 'marker2title',
-            2: 'marker2title',
-            3: 'marker1title',
-          }
-        }],
-
-
-        regions: [{
-          attribute: 'fill',
-          legend: {
-            title: 'Something',
-          },
-          scale: {
-            scale1: 'yellow',
-            scale2: 'dodgerblue',
-            scale3: 'forestgreen',
-          },
-          values: {
-            "{{data[0]['pais_id']}}": 'scale1',
-            "{{data[1]['pais_id']}}": 'scale1',
-            "{{data[2]['pais_id']}}": 'scale2',
-            "{{data[3]['pais_id']}}": 'scale2',
-            "{{data[4]['pais_id']}}": 'scale2',
-            "{{data[5]['pais_id']}}": 'scale3',
-            "{{data[6]['pais_id']}}": 'scale3',
-            "{{data[7]['pais_id']}}": 'scale3',
-          }
-        }]
-      }
-    });
-  </script>
 </head>
 
 <body>
@@ -78,35 +19,50 @@
       <h1>DataLife</h1>
     </header>
     <main>
-      <div id="selector">
+      <div id="contSelector">
         <h3>Paises con STDEV > 2.5(Esperanza de vida)</h3>
         <ul>
           <li>Esperanza:</li>
           {% for i in data %}
-          <li>{{data[i]['nombre_EN']}} - 2000:{{data[i]['esperanza'][2000]}}</li>
+          <li><button id="{{data[i]['pais_id']}}">{{data[i]['nombre_EN']}}</button></li>
           {% endfor %}
         </ul>
-        <div id = 'selectorMetrica'>
+        <div id='contMetrica'>
           <label for="metrica">Metrica</label>
-          <select name="metrica">
-            <option value="value1">Metrica 1</option>
-            <option value="value2" selected>Metrica 2</option>
+          <select name="metrica" id="metrica">
+            <option value="life_exp" selected>Esperanza de vida</option>
+            <option value="value2">Metrica 2</option>
             <option value="value3">Metrica 3</option>
           </select>
         </div>
       </div>
-      <div id="mapa">
-        <div id="map">
+      <div id="contMapa">
+        <h3 id="mapTitle">Esperanza de vida</h3>
+        <div>
+          
+          <div id="map">
+            <div id="contData">
+              <h5 id="dataTitle">Info</h5>
+              <p>the real wea</p>
+            </div>
+          </div>
+
         </div>
         <div id="slidecontainer">
-          <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+          <input type="range" min="1990" max="2019" value="1990" class="slider" id="year">
         </div>
       </div>
     </main>
     <footer>
+      <button id="focus">Focus</button>
       <p>Copyright © 2022 Datalife, Inc.</p>
     </footer>
   </div>
 </body>
+{% block javascript %}
+<script type="text/javascript">
+  {% include "js/script.js" %}
+</script>
+{% endblock %}
 
 </html>

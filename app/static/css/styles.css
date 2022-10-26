@@ -19,40 +19,46 @@
 #container main {
   grid-area: midx;
   display: grid;
-  grid-template-columns: 0.3fr 0.7fr;
+  grid-template-columns: 0.25fr 0.75fr;
   grid-template-rows: 1fr;
   grid-template-areas: "selector mapa";
 }
-#container main #selector {
+#container main #contSelector {
   grid-area: selector;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 0.5fr 0.3fr;
+  grid-template-rows: 0.1fr 0.8fr 0.1fr;
   grid-template-areas: "titulo" "lista" "metrica";
 }
-#container main #selector h3 {
+#container main #contSelector h3 {
+  grid-area: titulo;
+  width: 100%;
+}
+#container main #contSelector #contMetrica {
   grid-area: metrica;
   width: 100%;
-  margin-bottom: 150px;
 }
-#container main #selector #selectorMetrica {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-#container main #mapa {
+#container main #contMapa {
   grid-area: mapa;
-  justify-content: center;
-  width: 100%;
-  height: 700px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.05fr 0.9fr 0.05fr;
+  grid-template-areas: "mapTitle" "mapBody" "mapRange";
 }
-#container main #mapa #map {
-  margin-left: 150px;
+#container main #contMapa #contData {
+  height: 150px;
+  width: 100px;
+  background-color: #2D2D2D;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  text-align: center;
+}
+#container main #contMapa #contData p, #container main #contMapa #contData h5 {
+  color: wheat;
 }
 #container main #slidecontainer {
-  display: flex;
-  justify-content: center;
+  background-color: none;
 }
 #container main #slidecontainer .slider {
   width: 75%;
