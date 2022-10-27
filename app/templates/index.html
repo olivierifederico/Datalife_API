@@ -33,11 +33,12 @@
             <option value="life_exp" selected>Esperanza de vida</option>
             <option value="cred_priv">Credito Privado</option>
             <option value="value3">Metrica 3</option>
+            <option value="value4">Metrica 4</option>
           </select>
         </div>
       </div>
       <div id="contMapa">
-        <h3 id="mapTitle">Esperanza de vida</h3>
+        <h3 id="mapTitle">Mapa interactivo</h3>
           <div id="map">
             <div id="contData">
               <h4 id="dataTitle">Info</h4>
@@ -70,15 +71,12 @@
       </div>
     </main>
     <footer>
-      <button id="focus">Focus</button>
-      <button id="focus2">Focus</button>
       <p>Copyright © 2022 Datalife, Inc.</p>
     </footer>
   </div>
   {% block javascript %}
 <script type="text/javascript">
   {% include "js/script.js" %}
-  {% include "js/backscript.js" %}
 </script>
 {% endblock %}
 </body>

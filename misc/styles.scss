@@ -25,6 +25,7 @@ $color-negro: #2D2D2D;
 
     header {
         grid-area: topx;
+        background-color: $color-azul;
     }
 
     main {
@@ -65,18 +66,22 @@ $color-negro: #2D2D2D;
                 "mapTitle"
                 "mapBody"
                 "mapRange";
-                #map{
-                    border: 5px solid black;
-                    grid-area: mapBody;
-                }
+
+            #map {
+                grid-area: mapBody;
+            }
 
             #contData {
                 height: 250px;
                 width: 200px;
                 background-color: lightgrey;
+                border-radius: 25px 25px 25px 25px;
+                -moz-border-radius: 25px 25px 25px 25px;
+                -webkit-border-radius: 25px 25px 25px 25px;
+                border: 1px solid $color-amarillo;
                 position: absolute;
                 bottom: 3%;
-                left: 1%;
+                left: 2%;
                 display: grid;
                 grid-template-columns: 0.5fr 0.5fr;
                 grid-template-rows: 0.1fr 0.1fr 0.8fr;
@@ -84,19 +89,24 @@ $color-negro: #2D2D2D;
                     "titulo titulo"
                     "year year"
                     "listaPaises listaMetricas";
-                #listaPaises{
+
+                #listaPaises {
                     grid-area: listaPaises;
                 }
+
                 #listaMetricas {
                     grid-area: listaMetricas;
                     padding-left: 20px;
                 }
+
                 h4 {
                     grid-area: titulo;
                 }
+
                 h5 {
                     grid-area: year;
                 }
+
                 p,
                 li,
                 h5 {
@@ -141,6 +151,7 @@ $color-negro: #2D2D2D;
 
     footer {
         grid-area: botx;
+        background-color: $color-azul;
     }
 }
 

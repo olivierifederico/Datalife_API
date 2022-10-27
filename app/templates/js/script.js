@@ -137,89 +137,6 @@ map.extend("reloadWith", function (newParams) {
   }
 });
 
-
-document.querySelector("#focus2").addEventListener("click", () => {
-  map.reloadWith({
-      markers: markers,
-      regionStyle: {
-          initial: { fill: "#d1d5db" }
-      },
-      series: {
-          markers: [
-              {
-                  attribute: "fill",
-                  legend: {
-                      title: "Something (marker)"
-                  },
-                  scale: {
-                      mScale1: "#ffc371",
-                      mScale2: "#c79efd"
-                  },
-                  values: {
-                      // Notice: the key must be a number of the marker.
-                      0: "mScale1",
-                      1: "mScale2",
-                      2: "mScale2"
-                  }
-              }
-          ]
-      },
-      visualizeData: { 
-          scale: ['#DEE007', '#3EBB01'],
-          values :mierda
-      }
-  });
-});
-
-document.querySelector("#focus").addEventListener("click", () => {
-  map.reloadWith({
-      markers: [
-          { name: "Brazil", coords: [-14.235, -51.9253] },
-          { name: "Norway", coords: [60.472, 8.4689] },
-          { name: "China", coords: [35.8617, 104.1954] },
-          { name: "United States", coords: [37.0902, -95.7129] },
-          { name: "Egypt", coords: [26.8206, 30.8025] }
-      ],
-      regionStyle: {
-          initial: { fill: "#d1d5db" }
-      },
-      series: {
-          markers: [
-              {
-                  attribute: "fill",
-                  legend: {
-                      title: "Something (marker)"
-                  },
-                  scale: {
-                      mScale1: "#ffc371",
-                      mScale2: "#c79efd"
-                  },
-                  values: {
-                      // Notice: the key must be a number of the marker.
-                      0: "mScale1",
-                      1: "mScale2",
-                      2: "mScale2"
-                  }
-              }
-          ]
-      },
-      visualizeData: { 
-          scale: ['#DEE007', '#3EBB01'],
-          values :{
-              BR: 42.08279,
-              ID: 0,
-              IN: 24.916456,
-              KR: 50.774,
-              PT: 0,
-              RU: 0,
-              TR: 0,
-              ZA: 71.9382,
-          }
-      }
-  });
-});
-
-
 {% for i in data %}
 document.querySelector('#{{data[i]["pais_id"]}}').addEventListener('click', () => {
   map.setFocus({ region: '{{data[i]["pais_id"]}}', animate: true })
@@ -250,8 +167,6 @@ const $i6 = document.getElementById('s6')
 const $i7 = document.getElementById('s7')
 
 var onLoaderino = 1;
-
-var alfa_0,alfa_1,alfa_2,alfa_3,alfa_4,alfa_5,alfa_6,alfa_7;
 
 const yearMetric = () => {
   const indexMetrica = $select.selectedIndex;
@@ -290,7 +205,6 @@ const yearMetric = () => {
 
 
   if(onLoaderino == 0){
-    console.log(onLoaderino)
     map.reloadWith({
       markers: markers,
       regionStyle: {
@@ -344,8 +258,7 @@ const yearMetric = () => {
       
   }
   
-  onLoaderino = 0,
-      console.log(onLoaderino)
+  onLoaderino = 0
 
 
   // Seteo del mapa

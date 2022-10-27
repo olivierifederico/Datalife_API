@@ -15,6 +15,7 @@
 }
 #container header {
   grid-area: topx;
+  background-color: #106CAF;
 }
 #container main {
   grid-area: midx;
@@ -46,16 +47,19 @@
   grid-template-areas: "mapTitle" "mapBody" "mapRange";
 }
 #container main #contMapa #map {
-  border: 5px solid black;
   grid-area: mapBody;
 }
 #container main #contMapa #contData {
   height: 250px;
   width: 200px;
   background-color: lightgrey;
+  border-radius: 25px 25px 25px 25px;
+  -moz-border-radius: 25px 25px 25px 25px;
+  -webkit-border-radius: 25px 25px 25px 25px;
+  border: 1px solid #C9C423;
   position: absolute;
   bottom: 3%;
-  left: 1%;
+  left: 2%;
   display: grid;
   grid-template-columns: 0.5fr 0.5fr;
   grid-template-rows: 0.1fr 0.1fr 0.8fr;
@@ -109,6 +113,7 @@
 }
 #container footer {
   grid-area: botx;
+  background-color: #106CAF;
 }
 
 .jvm-legend {
