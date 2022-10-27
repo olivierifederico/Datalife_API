@@ -38,8 +38,6 @@
       </div>
       <div id="contMapa">
         <h3 id="mapTitle">Esperanza de vida</h3>
-        <div>
-          
           <div id="map">
             <div id="contData">
               <h4 id="dataTitle">Info</h4>
@@ -65,8 +63,6 @@
                 <li id="pais7"></li>
               </ul>
             </div>
-          </div>
-
         </div>
         <div id="slidecontainer">
           <input type="range" min="1990" max="2019" value="1990" class="slider" id="year">
@@ -75,14 +71,18 @@
     </main>
     <footer>
       <button id="focus">Focus</button>
+      <button id="focus2">Focus</button>
       <p>Copyright © 2022 Datalife, Inc.</p>
     </footer>
   </div>
-</body>
-{% block javascript %}
+  {% block javascript %}
 <script type="text/javascript">
   {% include "js/script.js" %}
+  {% include "js/backscript.js" %}
 </script>
 {% endblock %}
+</body>
+
+
 
 </html>

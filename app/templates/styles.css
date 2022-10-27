@@ -55,7 +55,7 @@
   background-color: lightgrey;
   position: absolute;
   bottom: 3%;
-  left: 1%;
+  left: 3%;
   display: grid;
   grid-template-columns: 0.5fr 0.5fr;
   grid-template-rows: 0.1fr 0.1fr 0.8fr;

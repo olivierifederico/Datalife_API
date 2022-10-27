@@ -65,6 +65,10 @@ $color-negro: #2D2D2D;
                 "mapTitle"
                 "mapBody"
                 "mapRange";
+                #map{
+                    border: 5px solid black;
+                    grid-area: mapBody;
+                }
 
             #contData {
                 height: 250px;
@@ -72,7 +76,7 @@ $color-negro: #2D2D2D;
                 background-color: lightgrey;
                 position: absolute;
                 bottom: 3%;
-                left: 3%;
+                left: 1%;
                 display: grid;
                 grid-template-columns: 0.5fr 0.5fr;
                 grid-template-rows: 0.1fr 0.1fr 0.8fr;
@@ -138,4 +142,9 @@ $color-negro: #2D2D2D;
     footer {
         grid-area: botx;
     }
+}
+
+
+.jvm-legend {
+    display: none;
 }
