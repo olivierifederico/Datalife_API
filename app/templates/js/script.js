@@ -1,6 +1,6 @@
 //primer parte
 
-const nan = "No hay datos"
+const nan = "---"
 const paises = {{ data | safe }}
 
 console.log(paises)
@@ -113,15 +113,41 @@ const $li5 = document.getElementById('pais5')
 const $li6 = document.getElementById('pais6')
 const $li7 = document.getElementById('pais7')
 
+const $i0 = document.getElementById('s0')
+const $i1 = document.getElementById('s1')
+const $i2 = document.getElementById('s2')
+const $i3 = document.getElementById('s3')
+const $i4 = document.getElementById('s4')
+const $i5 = document.getElementById('s5')
+const $i6 = document.getElementById('s6')
+const $i7 = document.getElementById('s7')
+
+
 const yearMetric = () => {
   const indexMetrica = $select.selectedIndex;
+  var metrica;
   if(indexMetrica == 0){
-    var metrica = 'esperanza'
+    metrica = 'esperanza'
+  }else if(indexMetrica == 1){
+    metrica = 'credito_privado'
+  }else if(indexMetrica == 2){
+    metrica = 'Metrica 3'
   }
+
   var valorYear = $year.value;
   valorYear = valorYear.toString()
-  const seleccionFinal = "Metrica seleccionada:" + indexMetrica + " del a;o:" + valorYear
+  const seleccionFinal = "Metrica:" + metrica[0].toUpperCase()+metrica.substring(1)
   $dataTitle.innerText = seleccionFinal
+
+  $i0.innerText = paises[0]['nombre_ESP']
+  $i1.innerText = paises[1]['nombre_ESP']
+  $i2.innerText = paises[2]['nombre_ESP']
+  $i3.innerText = paises[3]['nombre_ESP']
+  $i4.innerText = paises[4]['nombre_ESP']
+  $i5.innerText = paises[5]['nombre_ESP']
+  $i6.innerText = paises[6]['nombre_ESP']
+  $i7.innerText = paises[7]['nombre_ESP']
+
   $li0.innerText = paises[0][metrica][valorYear]
   $li1.innerText = paises[1][metrica][valorYear]
   $li2.innerText = paises[2][metrica][valorYear]
@@ -131,6 +157,8 @@ const yearMetric = () => {
   $li6.innerText = paises[6][metrica][valorYear]
   $li7.innerText = paises[7][metrica][valorYear]
 }
+
+yearMetric()
 
 $select.addEventListener("change", yearMetric);
 $year.addEventListener("change", yearMetric)

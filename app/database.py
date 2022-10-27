@@ -111,7 +111,7 @@ def data_front():
     except:
         pass
     #chequear que los a;os funcionen bien cuando se hacen multiples joins
-    data_esperanza = Pais.select(Pais.pais_id,Pais.nombre_EN,Pais.latitud,Pais.longitud,Esperanza.esperanza,Esperanza.year).join(Esperanza,on=(Pais.pais_id == Esperanza.pais_id))
+    data_esperanza = Pais.select(Pais.pais_id,Pais.nombre_EN,Pais.nombre_ESP,Pais.latitud,Pais.longitud,Esperanza.esperanza,Esperanza.year).join(Esperanza,on=(Pais.pais_id == Esperanza.pais_id))
     data_esperanza = pd.DataFrame(data_esperanza.dicts())
     #stddev calc
     data2 = data_esperanza.groupby('pais_id')[['esperanza']].std().sort_values(by='esperanza',ascending=False).reset_index()

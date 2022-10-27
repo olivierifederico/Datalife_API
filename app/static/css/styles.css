@@ -46,16 +46,34 @@
   grid-template-areas: "mapTitle" "mapBody" "mapRange";
 }
 #container main #contMapa #contData {
-  height: 300px;
+  height: 250px;
   width: 200px;
-  background-color: #2D2D2D;
+  background-color: lightgrey;
   position: absolute;
-  top: 30%;
-  left: 30%;
-  text-align: center;
+  bottom: 3%;
+  left: 3%;
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  grid-template-rows: 0.1fr 0.1fr 0.8fr;
+  grid-template-areas: "titulo titulo" "year year" "listaPaises listaMetricas";
 }
-#container main #contMapa #contData p, #container main #contMapa #contData li, #container main #contMapa #contData h5 {
-  color: wheat;
+#container main #contMapa #contData #listaPaises {
+  grid-area: listaPaises;
+}
+#container main #contMapa #contData #listaMetricas {
+  grid-area: listaMetricas;
+  padding-left: 20px;
+}
+#container main #contMapa #contData h4 {
+  grid-area: titulo;
+}
+#container main #contMapa #contData h5 {
+  grid-area: year;
+}
+#container main #contMapa #contData p,
+#container main #contMapa #contData li,
+#container main #contMapa #contData h5 {
+  color: #2D2D2D;
 }
 #container main #slidecontainer {
   background-color: none;
