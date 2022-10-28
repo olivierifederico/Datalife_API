@@ -21,10 +21,11 @@
     <main>
       <div id="contSelector">
         <h3>Paises con STDEV > 2.5(Esperanza de vida)</h3>
-        <ul>
+        <p id="texto">Mapa geográfico con los países seleccionados en base a el parámetro esperanza de vida y su desviación típica, la cual nos ofrece información valiosa sobre los estados que incrementaron éstos valores de manera más acrecentada en el período observable.</p>
+        <ul id="lista">
           <li>Esperanza:</li>
           {% for i in data %}
-          <li><button id="{{data[i]['pais_id']}}">{{data[i]['nombre_EN']}}</button></li>
+          <li><button id="{{data[i]['pais_id']}}">{{data[i]['nombre_ESP']}}</button></li>
           {% endfor %}
         </ul>
         <div id='contMetrica'>

@@ -7,7 +7,7 @@ const paises = {{ data | safe }}
 var markers = [];
 
 for (i in paises) {
-  markers.push({ name: paises[i]['nombre_EN'], coords: [paises[i]['latitud'], paises[i]['longitud']] })
+  markers.push({ name: paises[i]['nombre_ESP'], coords: [paises[i]['latitud'], paises[i]['longitud']] })
 }
 
 var mierda = {
@@ -40,7 +40,7 @@ var map = new jsVectorMap({
       }
   },
   markers: markers,
-  markersSelectable: true,
+  markersSelectable: false,
   selectedMarkers: markers.map((marker, index) => {
       var name = marker.name;
       if (name === "Russia" || name === "Brazil") {
@@ -176,7 +176,7 @@ const yearMetric = () => {
   }else if(indexMetrica == 1){
     metrica = 'credito_privado'
   }else if(indexMetrica == 2){
-    metrica = 'Metrica 3'
+    metrica = 'Terciario'
   }
 
   var valorYear = $year.value;
@@ -207,6 +207,7 @@ const yearMetric = () => {
   if(onLoaderino == 0){
     map.reloadWith({
       markers: markers,
+      markersSelectable: false,
       regionStyle: {
           initial: { fill: "#d1d5db" }
       },
@@ -218,8 +219,8 @@ const yearMetric = () => {
                       title: "Something (marker)"
                   },
                   scale: {
-                      mScale1: "#ffc371",
-                      mScale2: "#c79efd"
+                      mScale1: "#2D2D2D",
+                      mScale2: "#2D2D2D"
                   },
                   values: {
                       // Notice: the key must be a number of the marker.

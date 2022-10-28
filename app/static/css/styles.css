@@ -6,7 +6,7 @@
 
 #container {
   margin: auto;
-  width: 90vw;
+  width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
@@ -18,6 +18,7 @@
   background-color: #106CAF;
 }
 #container main {
+  padding: 10px;
   grid-area: midx;
   display: grid;
   grid-template-columns: 0.25fr 0.75fr;
@@ -28,8 +29,15 @@
   grid-area: selector;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 0.8fr 0.1fr;
-  grid-template-areas: "titulo" "lista" "metrica";
+  grid-template-rows: 0.1fr 0.5fr 0.3fr 0.1fr;
+  grid-template-areas: "titulo" "texto" "lista" "metrica";
+}
+#container main #contSelector #texto {
+  grid-area: texto;
+  font-size: 26px;
+}
+#container main #contSelector #lista {
+  grid-area: lista;
 }
 #container main #contSelector h3 {
   grid-area: titulo;

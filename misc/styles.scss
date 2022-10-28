@@ -13,7 +13,7 @@ $color-negro: #2D2D2D;
 
 #container {
     margin: auto;
-    width: 90vw;
+    width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
@@ -29,6 +29,7 @@ $color-negro: #2D2D2D;
     }
 
     main {
+        padding: 10px;
         grid-area: midx;
         display: grid;
         grid-template-columns: 0.25fr 0.75fr;
@@ -40,11 +41,20 @@ $color-negro: #2D2D2D;
             grid-area: selector;
             display: grid;
             grid-template-columns: 1fr;
-            grid-template-rows: 0.1fr 0.8fr 0.1fr;
+            grid-template-rows: 0.1fr 0.5fr 0.3fr 0.1fr;
             grid-template-areas:
                 "titulo"
+                "texto"
                 "lista"
                 "metrica";
+
+            #texto{
+                grid-area: texto;
+                font-size: 26px;
+            }
+            #lista {
+                grid-area: lista;
+            }
 
             h3 {
                 grid-area: titulo;
