@@ -4,7 +4,12 @@
   color: #2D2D2D;
 }
 
+ul {
+  list-style: none;
+}
+
 #container {
+  background-color: #106CAF;
   margin: auto;
   width: 100vw;
   height: 100vh;
@@ -15,10 +20,20 @@
 }
 #container header {
   grid-area: topx;
-  background-color: #106CAF;
+  background-color: whitesmoke;
+  vertical-align: middle;
+  display: flex;
+}
+#container header #logox {
+  width: auto;
+  height: 75px;
+  margin-top: 7px;
+  margin-left: 32px;
 }
 #container main {
   padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   grid-area: midx;
   display: grid;
   grid-template-columns: 0.25fr 0.75fr;
@@ -28,53 +43,90 @@
 #container main #contSelector {
   grid-area: selector;
   display: grid;
+  height: 100%;
+  padding-left: 25px;
   grid-template-columns: 1fr;
   grid-template-rows: 0.1fr 0.5fr 0.3fr 0.1fr;
   grid-template-areas: "titulo" "texto" "lista" "metrica";
 }
 #container main #contSelector #texto {
   grid-area: texto;
-  font-size: 26px;
+  font-size: 22px;
+  color: whitesmoke;
 }
 #container main #contSelector #lista {
   grid-area: lista;
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  grid-template-rows: 0.1fr 0.2fr 0.2fr 0.2fr 0.2fr 0.1fr;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
 }
 #container main #contSelector h3 {
   grid-area: titulo;
+  color: whitesmoke;
   width: 100%;
 }
 #container main #contSelector #contMetrica {
   grid-area: metrica;
   width: 100%;
+  padding-top: 100px;
 }
 #container main #contMapa {
   grid-area: mapa;
   display: grid;
+  padding-left: 80px;
+  padding-right: 40px;
   grid-template-columns: 1fr;
   grid-template-rows: 0.05fr 0.9fr 0.05fr;
   grid-template-areas: "mapTitle" "mapBody" "mapRange";
 }
+#container main #contMapa #mapTitle {
+  color: whitesmoke;
+}
 #container main #contMapa #map {
   grid-area: mapBody;
+  border-radius: 20px 20px 20px 20px;
+}
+#container main #contMapa #slidecontainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+#container main #contMapa #slidecontainer input {
+  margin: auto;
 }
 #container main #contMapa #contData {
   height: 250px;
-  width: 200px;
+  width: 230px;
   background-color: lightgrey;
-  border-radius: 25px 25px 25px 25px;
+  border-radius: 20px 20px 20px 20px;
   -moz-border-radius: 25px 25px 25px 25px;
   -webkit-border-radius: 25px 25px 25px 25px;
   border: 1px solid #C9C423;
   position: absolute;
+  padding: 5px;
   bottom: 3%;
   left: 2%;
   display: grid;
   grid-template-columns: 0.5fr 0.5fr;
   grid-template-rows: 0.1fr 0.1fr 0.8fr;
-  grid-template-areas: "titulo titulo" "year year" "listaPaises listaMetricas";
+  grid-template-areas: "titulo titulo" "year year" "listaPaises listaMetricas" "escala escala";
+}
+#container main #contMapa #contData #escala {
+  grid-area: escala;
+  text-align: center;
+}
+#container main #contMapa #contData ul {
+  font-size: 16px;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: center;
 }
 #container main #contMapa #contData #listaPaises {
   grid-area: listaPaises;
+  padding-left: 15%;
 }
 #container main #contMapa #contData #listaMetricas {
   grid-area: listaMetricas;
@@ -82,9 +134,13 @@
 }
 #container main #contMapa #contData h4 {
   grid-area: titulo;
+  text-align: center;
+  font-size: 18px;
 }
-#container main #contMapa #contData h5 {
+#container main #contMapa #contData #dataYear {
   grid-area: year;
+  text-align: center;
+  font-size: 18px;
 }
 #container main #contMapa #contData p,
 #container main #contMapa #contData li,
@@ -121,9 +177,33 @@
 }
 #container footer {
   grid-area: botx;
-  background-color: #106CAF;
+  background-color: whitesmoke;
+  border-top: 4px solid #106CAF;
+  display: flex;
+  justify-content: center;
+}
+#container footer p {
+  margin: auto;
+}
+
+label {
+  color: whitesmoke;
+  font-size: 18px;
 }
 
 .jvm-legend {
   display: none;
+}
+
+.botonito {
+  text-align: center;
+}
+.botonito button {
+  display: inline-block;
+  border: 1px solid #C9C423;
+  font-size: 16px;
+  padding: 5px 0px;
+  margin: 3px auto;
+  width: 100%;
+  text-align: center;
 }/*# sourceMappingURL=styles.css.map */

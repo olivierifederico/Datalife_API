@@ -24,14 +24,15 @@ var mierda = {
 var map = new jsVectorMap({
   selector: "#map",
   map: "world",
+  backgroundColor : 'whitesmoke',
   regionStyle: {
       initial: {
-          fill: '#d1d4db'
+          fill: '#9FB5B5'
       }
   },
 
   visualizeData: {
-      scale: ['#DEE007', '#3EBB01'],
+      scale: ['#F48C01', '#21D900'],
       values: mierda
   },
   labels: {
@@ -208,8 +209,9 @@ const yearMetric = () => {
     map.reloadWith({
       markers: markers,
       markersSelectable: false,
+      backgroundColor : 'whitesmoke',
       regionStyle: {
-          initial: { fill: "#d1d5db" }
+          initial: { fill: "#9FB5B5" }
       },
       series: {
           markers: [
@@ -232,7 +234,7 @@ const yearMetric = () => {
           ]
       },
       visualizeData: { 
-          scale: ['#DEE007', '#3EBB01'],
+        scale: ['#F48C01', '#21D900'],
           values :{
               [paises[0]['pais_id']]: [paises[0][metrica][valorYear]],
               [paises[1]['pais_id']]: [paises[1][metrica][valorYear]],

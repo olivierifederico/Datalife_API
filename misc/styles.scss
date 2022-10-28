@@ -11,7 +11,12 @@ $color-negro: #2D2D2D;
     color: $color-negro;
 }
 
+ul{
+    list-style: none;
+}
+
 #container {
+    background-color: $color-azul;
     margin: auto;
     width: 100vw;
     height: 100vh;
@@ -25,11 +30,24 @@ $color-negro: #2D2D2D;
 
     header {
         grid-area: topx;
-        background-color: $color-azul;
+        background-color: whitesmoke;
+        vertical-align: middle;
+        display: flex;
+        #logox {
+            width: auto;
+            height:75px;
+            margin-top: 7px;
+            margin-left: 32px;
+        }
     }
 
     main {
         padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        //border-bottom: 4px solid $color-verde;
+        //border-top: 4px solid $color-verde;
+        
         grid-area: midx;
         display: grid;
         grid-template-columns: 0.25fr 0.75fr;
@@ -40,9 +58,12 @@ $color-negro: #2D2D2D;
         #contSelector {
             grid-area: selector;
             display: grid;
+            height: 100%;
+            padding-left: 25px;
             grid-template-columns: 1fr;
             grid-template-rows: 0.1fr 0.5fr 0.3fr 0.1fr;
             grid-template-areas:
+
                 "titulo"
                 "texto"
                 "lista"
@@ -50,46 +71,69 @@ $color-negro: #2D2D2D;
 
             #texto{
                 grid-area: texto;
-                font-size: 26px;
+                font-size: 22px;
+                color: whitesmoke;
             }
             #lista {
                 grid-area: lista;
+                display: grid;
+                grid-template-columns: 0.5fr 0.5fr;
+                grid-template-rows: 0.1fr 0.2fr 0.2fr 0.2fr 0.2fr 0.1fr;
+                column-gap: 6px;
             }
 
             h3 {
                 grid-area: titulo;
+                color: whitesmoke;
                 width: 100%;
             }
 
             #contMetrica {
                 grid-area: metrica;
                 width: 100%;
+                padding-top: 100px;
             }
         }
 
         #contMapa {
             grid-area: mapa;
             display: grid;
+            padding-left: 80px;
+            padding-right: 40px;
             grid-template-columns: 1fr;
             grid-template-rows: 0.05fr 0.9fr 0.05fr;
             grid-template-areas:
                 "mapTitle"
                 "mapBody"
                 "mapRange";
-
+            #mapTitle{
+                color: whitesmoke;
+            }
             #map {
                 grid-area: mapBody;
+                border-radius: 20px 20px 20px 20px;
             }
+            #slidecontainer {
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                input {
+                    margin: auto;
+                }
+            }
+
+
 
             #contData {
                 height: 250px;
-                width: 200px;
+                width: 230px;
                 background-color: lightgrey;
-                border-radius: 25px 25px 25px 25px;
+                border-radius: 20px 20px 20px 20px;
                 -moz-border-radius: 25px 25px 25px 25px;
                 -webkit-border-radius: 25px 25px 25px 25px;
                 border: 1px solid $color-amarillo;
                 position: absolute;
+                padding: 5px;
                 bottom: 3%;
                 left: 2%;
                 display: grid;
@@ -98,10 +142,26 @@ $color-negro: #2D2D2D;
                 grid-template-areas:
                     "titulo titulo"
                     "year year"
-                    "listaPaises listaMetricas";
+                    "listaPaises listaMetricas"
+                    "escala escala";
+
+                #escala {
+                    grid-area: escala;
+                    text-align: center;
+                }
+
+                
+                ul{
+                    font-size: 16px;
+                    display: flex;
+                    align-items: stretch;
+                    flex-direction: column;
+                    justify-content: center;
+                }
 
                 #listaPaises {
                     grid-area: listaPaises;
+                    padding-left: 15%;
                 }
 
                 #listaMetricas {
@@ -111,10 +171,15 @@ $color-negro: #2D2D2D;
 
                 h4 {
                     grid-area: titulo;
+                    text-align: center;
+                    font-size: 18px;
+                    
                 }
 
-                h5 {
+                #dataYear {
                     grid-area: year;
+                    text-align: center;
+                    font-size: 18px;
                 }
 
                 p,
@@ -161,11 +226,34 @@ $color-negro: #2D2D2D;
 
     footer {
         grid-area: botx;
-        background-color: $color-azul;
+        background-color: whitesmoke;
+        border-top: 4px solid $color-azul;
+        display: flex;
+        justify-content: center;
+        p{
+            margin:auto
+        }
     }
 }
 
+label{
+    color: whitesmoke;
+    font-size: 18px;
+}
 
 .jvm-legend {
     display: none;
 }
+
+.botonito {
+    text-align: center;
+    
+    button {
+    display: inline-block;
+    border: 1px solid $color-amarillo;
+    font-size: 16px;
+    padding: 5px 0px;
+    margin: 3px auto ;
+    width:  100%;
+    text-align: center;
+}}
