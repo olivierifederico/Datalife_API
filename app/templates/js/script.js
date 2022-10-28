@@ -10,7 +10,7 @@ for (i in paises) {
   markers.push({ name: paises[i]['nombre_ESP'], coords: [paises[i]['latitud'], paises[i]['longitud']] })
 }
 
-var mierda = {
+var batman = {
   {{data[0]['pais_id']}}:{{data[0]['esperanza'][1990]}},
   {{data[1]['pais_id']}}:{{data[1]['esperanza'][1990]}},
   {{data[2]['pais_id']}}:{{data[2]['esperanza'][1990]}},
@@ -33,7 +33,7 @@ var map = new jsVectorMap({
 
   visualizeData: {
       scale: ['#F48C01', '#21D900'],
-      values: mierda
+      values: batman
   },
   labels: {
       markers: {
