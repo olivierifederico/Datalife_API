@@ -1,25 +1,19 @@
 //primer parte
 
-const nan = "---"
+const nan = "--"
 const paises = {{ data | safe }}
 
 
 var markers = [];
+var batman = {}
 
 for (i in paises) {
   markers.push({ name: paises[i]['nombre_ESP'], coords: [paises[i]['latitud'], paises[i]['longitud']] })
+  pais_id = paises[i]['pais_id']
+  batman[pais_id] = paises[i]['esperanza'][1990]
 }
 
-var batman = {
-  {{data[0]['pais_id']}}:{{data[0]['esperanza'][1990]}},
-  {{data[1]['pais_id']}}:{{data[1]['esperanza'][1990]}},
-  {{data[2]['pais_id']}}:{{data[2]['esperanza'][1990]}},
-  {{data[3]['pais_id']}}:{{data[3]['esperanza'][1990]}},
-  {{data[4]['pais_id']}}:{{data[4]['esperanza'][1990]}},
-  {{data[5]['pais_id']}}:{{data[5]['esperanza'][1990]}},
-  {{data[6]['pais_id']}}:{{data[6]['esperanza'][1990]}},
-  {{data[7]['pais_id']}}:{{data[7]['esperanza'][1990]}},
-  }
+
 
 var map = new jsVectorMap({
   selector: "#map",
@@ -58,8 +52,6 @@ var map = new jsVectorMap({
   },
 
 });
-
-
 
 
 H = (function () {
@@ -119,8 +111,6 @@ map.extend("reloadWith", function (newParams) {
   this._createMarkers(this.params.markers);
   this._repositionLabels();
   this._setupElementEvents()
-  // "jvm-series-container jvm-series-h"
-  // "jvm-series-container jvm-series-v"
   this.params.visualizeData && (this.dataVisualization = new H(this.params.visualizeData, this))
   const legendHorizontal = document.createElement("div");
   const legendVertical = document.createElement("div");
@@ -143,6 +133,7 @@ document.querySelector('#{{data[i]["pais_id"]}}').addEventListener('click', () =
   map.setFocus({ region: '{{data[i]["pais_id"]}}', animate: true })
 })
 {% endfor %}
+
 
 const $mapTitle = document.getElementById('mapTitle');
 const $select = document.querySelector("#metrica");
@@ -247,18 +238,7 @@ const yearMetric = () => {
           }
       }  
   },);
-    dataMap = {
-      {{data[0]['pais_id']}}:{{data[0]['esperanza'][1990]}},
-      {{data[1]['pais_id']}}:{{data[1]['esperanza'][1990]}},
-      {{data[2]['pais_id']}}:{{data[2]['esperanza'][1990]}},
-      {{data[3]['pais_id']}}:{{data[3]['esperanza'][1990]}},
-      {{data[4]['pais_id']}}:{{data[4]['esperanza'][1990]}},
-      {{data[5]['pais_id']}}:{{data[5]['esperanza'][1990]}},
-      {{data[6]['pais_id']}}:{{data[6]['esperanza'][1990]}},
-      {{data[7]['pais_id']}}:{{data[7]['esperanza'][1990]}},
-      }
-
-      
+    dataMap = batman
   }
   
   onLoaderino = 0
