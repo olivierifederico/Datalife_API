@@ -1,17 +1,13 @@
 #Importacion de librerias
 from peewee import PostgresqlDatabase
+import os
 
 #Datos de conexion
-DBNAME = '***REMOVED***'
-DBUSER = '***REMOVED***'
-DBKEY = '***REMOVED***'
-DBHOST = 'localhost'
-DBPORT = 5432
-
-DBHOST = '***REMOVED***'
-DBPORT = ***REMOVED***
-
-
+DBNAME = os.environ['DBNAME']
+DBUSER = os.environ['DBUSER']
+DBKEY = os.environ['DBKEY']
+DBHOST = os.environ['DBHOST']
+DBPORT = os.environ['DBPORT']
 
 
 db = PostgresqlDatabase(DBNAME,user = DBUSER, password = DBKEY, host = DBHOST ,port = DBPORT)
@@ -30,7 +26,3 @@ def get_tables():
     data = db.get_tables()
     db.close()
     return data
-
-
-
-

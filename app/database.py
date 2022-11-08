@@ -84,24 +84,6 @@ def create_tables():
     Esperanza_saludable.create_table()
     
     db.close()
-
-"""def load_tables():
-    db.connect()
-    Pais.insert_many(dict_pais).execute()
-    Esperanza.insert_many(dict_esperanza).execute()
-    Salud.insert_many(dict_salud).execute()
-    Esperanza_gen.insert_many(dict_esperanza_gen).execute()
-    Educacion.insert_many(dict_educacion).execute()
-    Economia.insert_many(dict_economia).execute()
-    Ambiente.insert_many(dict_ambiente).execute()
-    Terciario.insert_many(dict_terciario).execute()
-    Esperanza_saludable.insert_many(dict_esp_salu).execute()
-    
-    db.close()"""
-
-
-
-
 #Api Front
 
 #Devuelve una lista con la lista de los paises y un dataframe con los datos historicos
