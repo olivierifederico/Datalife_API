@@ -82,7 +82,7 @@
 
 <h2>Proximas actualizaciones:</h2>
 
-- Optimizar el codigo.
+- Optimizar el codigo. - 75% listo.
 - Mejorar la documentacion.
 - Agregar mas metricas.
 - Agregar predicciones.
