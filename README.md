@@ -79,11 +79,15 @@
  <p>Cree una funcion que reutiliza algunas partes con las que se inicializa el mapa, lo que me permitio pasarle los valores de las metricas para que los paises cambien de color y en caso de no que haya valores faltantes en algun pais, este se mantenga de color gris.</p>
 
 ---
+<h2>Mejoras realizadas</h2>
 
+- Optimizar el codigo. ✔  - (Siempre se puede mejorar)
+- Mejorar la documentacion. ✔
+
+---
 <h2>Proximas actualizaciones:</h2>
 
-- Optimizar el codigo. - 75% listo.
-- Mejorar la documentacion.
+
 - Agregar mas metricas.
 - Agregar predicciones.
 - Agregar datos generales al hover de cada pais.
