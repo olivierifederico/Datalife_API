@@ -5,10 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Titulo de la pagina en el navegador -->
   <title>Datalife API</title>
+  <!-- links -->
   <link rel="shortcut icon" href="{{url_for('static', path='/img/datalife_favicon.ico')}}" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap/dist/css/jsvectormap.min.css" />
   <link rel="stylesheet" href="{{url_for('static', path='/css/styles.css')}}">
+  <!-- Librerias para utilizar el mapa interactivo -->
   <script src="https://cdn.jsdelivr.net/npm/jsvectormap"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsvectormap/dist/maps/world.js"></script>
 </head>
@@ -21,10 +24,13 @@
     <main>
       <div id="contSelector">
         <h3>Paises con STDEV > 2.5(Esperanza de vida)</h3>
-        <p id="texto">Mapa geográfico con los países seleccionados en base a el parámetro esperanza de vida y su desviación típica, la cual nos ofrece información valiosa sobre los estados que incrementaron éstos valores de manera más acrecentada en el período observable.</p>
+        <p id="texto">Mapa geográfico con los países seleccionados en base a el parámetro esperanza de vida y su
+          desviación típica, la cual nos ofrece información valiosa sobre los estados que incrementaron éstos valores de
+          manera más acrecentada en el período observable.</p>
+          <!-- Creacion de botones utilizando jinja2 -->
         <ul id="lista">
           {% for i in data %}
-          <li class="botonito"><button  id="{{data[i]['pais_id']}}">{{data[i]['nombre_ESP']}}</button></li>
+          <li class="botonito"><button id="{{data[i]['pais_id']}}">{{data[i]['nombre_ESP']}}</button></li>
           {% endfor %}
         </ul>
         <div id='contMetrica'>
@@ -32,39 +38,42 @@
           <select name="metrica" id="metrica">
             <option value="life_exp" selected>Esperanza de vida</option>
             <option value="cred_priv">Credito Privado</option>
+            <!-- option value="terciario">Terciario Completo</option-->
+            <!-- option value="esp_sal">Esperanza Saludable</option-->
           </select>
         </div>
       </div>
       <div id="contMapa">
         <h3 id="mapTitle">Mapa interactivo</h3>
-          <div id="map">
-            <div id="contData">
-              <h4 id="dataTitle">Info</h4>
-              <h5 id="dataYear">Year</h5>
-              <ul id="listaPaises">
-                <li id="s0"></li>
-                <li id="s1"></li>
-                <li id="s2"></li>
-                <li id="s3"></li>
-                <li id="s4"></li>
-                <li id="s5"></li>
-                <li id="s6"></li>
-                <li id="s7"></li>
-              </ul>
-              <ul id="listaMetricas">
-                <li id="pais0"></li>
-                <li id="pais1"></li>
-                <li id="pais2"></li>
-                <li id="pais3"></li>
-                <li id="pais4"></li>
-                <li id="pais5"></li>
-                <li id="pais6"></li>
-                <li id="pais7"></li>
-              </ul>
-              <div id="escala">
-              <img  src="{{url_for('static', path='/img/scale.png')}}" alt="">
+        <div id="map">
+          <!-- Contenedor de las metricas -->
+          <div id="contData">
+            <h4 id="dataTitle">Info</h4>
+            <h5 id="dataYear">Year</h5>
+            <ul id="listaPaises">
+              <li id="s0"></li>
+              <li id="s1"></li>
+              <li id="s2"></li>
+              <li id="s3"></li>
+              <li id="s4"></li>
+              <li id="s5"></li>
+              <li id="s6"></li>
+              <li id="s7"></li>
+            </ul>
+            <ul id="listaMetricas">
+              <li id="pais0"></li>
+              <li id="pais1"></li>
+              <li id="pais2"></li>
+              <li id="pais3"></li>
+              <li id="pais4"></li>
+              <li id="pais5"></li>
+              <li id="pais6"></li>
+              <li id="pais7"></li>
+            </ul>
+            <div id="escala">
+              <img src="{{url_for('static', path='/img/scale.png')}}" alt="">
             </div>
-            </div>
+          </div>
         </div>
         <div id="slidecontainer">
           <input type="range" min="1990" max="2019" value="1990" class="slider" id="year">
@@ -75,11 +84,12 @@
       <p>Copyright © 2022 Datalife, Inc.</p>
     </footer>
   </div>
+  <!-- Import del archivo js procesado por jinja2 -->
   {% block javascript %}
-<script type="text/javascript">
-  {% include "js/script.js" %}
-</script>
-{% endblock %}
+  <script type="text/javascript">
+    {% include "js/script.js" %}
+  </script>
+  {% endblock %}
 </body>
 
 

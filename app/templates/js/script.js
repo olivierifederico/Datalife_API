@@ -1,20 +1,52 @@
-//primer parte
+/* Input desde Python.
+ 
+Diccionario que contiene un diccionario por cada pais,
+y dentro de este tiene valores y diccionarios, donde en
+estos ultimos se encuentran valores historicos.
 
-const nan = "--"
-const paises = {{ data | safe }}
+Ej:
+    {
+        0:{
+            nombre:paisx, 
+            latitud:valor, 
+            etc:etc, 
+            metrica1:{
+                year1:valor,
+                year2:valor,
+                year3:valor
+            },
+            metrica2:{
+                year1:valor,
+                year2:valor,
+                year3:valor
+            }
+        }
+    }
+
+*/
+const nan = "--" // Correcion de valores faltantes.
+const pais = {{data|safe}}
 
 
+
+
+// Carga de valores default.
 var markers = [];
-var batman = {}
-
-for (i in paises) {
-  markers.push({ name: paises[i]['nombre_ESP'], coords: [paises[i]['latitud'], paises[i]['longitud']] })
-  pais_id = paises[i]['pais_id']
-  batman[pais_id] = paises[i]['esperanza'][1990]
+var dataViz_default = {}
+for (i in pais) {
+  markers.push({ name: pais[i]['nombre_ESP'], coords: [pais[i]['latitud'], pais[i]['longitud']] })
+  dataViz_default[pais[i]['pais_id']] = pais[i]['esperanza'][1990]
 }
 
 
+/*
+Mapa
+- Creacion de mapa inicial.
+- Funcion necesaria para el reload del mapa.
+- Funcion reload mapa.
+*/
 
+// Mapa Inicial.
 var map = new jsVectorMap({
   selector: "#map",
   map: "world",
@@ -24,24 +56,36 @@ var map = new jsVectorMap({
           fill: '#9FB5B5'
       }
   },
+  
+  /*
+  Escala de colores
+  - Valores Default cargados previamente en "dataViz_default".
+  */
 
   visualizeData: {
       scale: ['#F48C01', '#21D900'],
-      values: batman
+      values: dataViz_default
   },
+
+  /*
+    Marcadores
+    - Nombre del pais.
+    - Coordenadas cargadas previamente en "markers".
+    - No son seleccionables.
+    - Estilo del marcador.
+  */
+
+  // Nombre
   labels: {
       markers: {
           render: (marker) => marker.name
       }
   },
+  // Coordenadas
   markers: markers,
+  // No seleccionable
   markersSelectable: false,
-  selectedMarkers: markers.map((marker, index) => {
-      var name = marker.name;
-      if (name === "Russia" || name === "Brazil") {
-          return index;
-      }
-  }),
+  // Estilo
   markerLabelStyle: {
       initial: {
           fontFamily: "Roboto",
@@ -50,10 +94,9 @@ var map = new jsVectorMap({
           backgroundColor: 'red'
       }
   },
-
 });
 
-
+// Pre Reload Mapa.
 H = (function () {
       function t(t, e) {
           var i = t.scale,
@@ -91,27 +134,30 @@ H = (function () {
       );
   })(),
 
+//Funcion Reload utilizando .extend
 map.extend("reloadWith", function (newParams) {
   this.reset();
 
-  // Remove old regions from DOM then empty the object
   Object.keys(this.regions).forEach((key) => {
       const el = this.regions[key].element.shape.node;
       el.parentElement.removeChild(el);
   });
   this.regions = {};
 
-  // Overwrite the old params with the new params
   Object.keys(newParams).forEach((key) => {
       this.params[key] = newParams[key];
   });
 
+  // Lamado a funciones que se utilizan para inicializar el mapa
   this._createRegions();
   this.updateSize();
   this._createMarkers(this.params.markers);
   this._repositionLabels();
   this._setupElementEvents()
+
+  //Visualizacion escala de colores
   this.params.visualizeData && (this.dataVisualization = new H(this.params.visualizeData, this))
+
   const legendHorizontal = document.createElement("div");
   const legendVertical = document.createElement("div");
 
@@ -128,9 +174,13 @@ map.extend("reloadWith", function (newParams) {
   }
 });
 
+
+numero = 0
+
+// Bucle de jinja 
 {% for i in data %}
 document.querySelector('#{{data[i]["pais_id"]}}').addEventListener('click', () => {
-  map.setFocus({ region: '{{data[i]["pais_id"]}}', animate: true })
+map.setFocus({ region: '{{data[i]["pais_id"]}}', animate: true })
 })
 {% endfor %}
 
@@ -140,27 +190,36 @@ const $select = document.querySelector("#metrica");
 const $dataTitle = document.getElementById('dataTitle');
 const $dataYear = document.getElementById('dataYear')
 const $year = document.querySelector('#year')
-const $li0 = document.getElementById('pais0')
-const $li1 = document.getElementById('pais1')
-const $li2 = document.getElementById('pais2')
-const $li3 = document.getElementById('pais3')
-const $li4 = document.getElementById('pais4')
-const $li5 = document.getElementById('pais5')
-const $li6 = document.getElementById('pais6')
-const $li7 = document.getElementById('pais7')
 
-const $i0 = document.getElementById('s0')
-const $i1 = document.getElementById('s1')
-const $i2 = document.getElementById('s2')
-const $i3 = document.getElementById('s3')
-const $i4 = document.getElementById('s4')
-const $i5 = document.getElementById('s5')
-const $i6 = document.getElementById('s6')
-const $i7 = document.getElementById('s7')
 
+
+// Se guardan los elementos en 2 listas, una de los paises y otro del valor de la metrica.
+
+var numero = 0
+var $li = []
+var $i = []
+for (i in pais) {
+    $li[numero] = document.getElementById('pais'+numero)
+    $i[numero] = document.getElementById('s'+numero)
+    numero++
+}
+
+
+
+
+/*
+Funcion que se ejecuta para mostrar los datos de las metricas.
+- Se obtiene la metrica y el anno
+- Carga de datos en las listas del html
+- Visualizacion de colores post init del mapa.
+
+*/
+
+// 
 var onLoaderino = 1;
 
 const yearMetric = () => {
+// metrica
   const indexMetrica = $select.selectedIndex;
   var metrica;
   if(indexMetrica == 0){
@@ -168,35 +227,39 @@ const yearMetric = () => {
   }else if(indexMetrica == 1){
     metrica = 'credito_privado'
   }else if(indexMetrica == 2){
-    metrica = 'Terciario'
+    metrica = 'terciario'
+  }else if(indexMetrica == 3){
+    metrica = 'esperanza_saludable'
   }
-
+// anno
   var valorYear = $year.value;
+// conversion para el titulo de la metrica
   valorYear = valorYear.toString()
   const seleccionFinal = "Metrica:" + metrica[0].toUpperCase()+metrica.substring(1)
   $dataTitle.innerText = seleccionFinal
   $dataYear.innerText = valorYear
 
-  $i0.innerText = paises[0]['nombre_ESP']
-  $i1.innerText = paises[1]['nombre_ESP']
-  $i2.innerText = paises[2]['nombre_ESP']
-  $i3.innerText = paises[3]['nombre_ESP']
-  $i4.innerText = paises[4]['nombre_ESP']
-  $i5.innerText = paises[5]['nombre_ESP']
-  $i6.innerText = paises[6]['nombre_ESP']
-  $i7.innerText = paises[7]['nombre_ESP']
+// carga de datos en las listas 
+  numero = 0
+  for (i in $i){
+    $i[i].innerText = pais[numero]['nombre_ESP']
+    $li[i].innerText = pais[numero][metrica][valorYear]
+    numero++
+  }
 
-  $li0.innerText = paises[0][metrica][valorYear]
-  $li1.innerText = paises[1][metrica][valorYear]
-  $li2.innerText = paises[2][metrica][valorYear]
-  $li3.innerText = paises[3][metrica][valorYear]
-  $li4.innerText = paises[4][metrica][valorYear]
-  $li5.innerText = paises[5][metrica][valorYear]
-  $li6.innerText = paises[6][metrica][valorYear]
-  $li7.innerText = paises[7][metrica][valorYear]
+/* 
+Despues de la inicializacion del mapa
+esta parte permite la visualizacion de colores
+cada vez que hay algun cambio en un selector.
 
-
+*/
   if(onLoaderino == 0){
+    dataViz = {}
+    for (i in pais){
+        dataViz[pais[i]['pais_id']] = pais[i][metrica][valorYear]
+    }
+
+
     map.reloadWith({
       markers: markers,
       markersSelectable: false,
@@ -205,40 +268,30 @@ const yearMetric = () => {
           initial: { fill: "#9FB5B5" }
       },
       series: {
-          markers: [
-              {
-                  attribute: "fill",
-                  legend: {
-                      title: "Something (marker)"
-                  },
-                  scale: {
-                      mScale1: "#2D2D2D",
-                      mScale2: "#2D2D2D"
-                  },
-                  values: {
-                      // Notice: the key must be a number of the marker.
-                      0: "mScale1",
-                      1: "mScale2",
-                      2: "mScale2"
-                  }
-              }
-          ]
-      },
+        markers: [
+            {
+                attribute: "fill",
+                legend: {
+                    title: "Something (marker)"
+                },
+                scale: {
+                    mScale1: "#2D2D2D",
+                    mScale2: "#2D2D2D"
+                },
+                values: {
+                    0: "mScale1",
+                    1: "mScale2",
+                    2: "mScale2"
+                }
+            }
+        ]
+    },
       visualizeData: { 
         scale: ['#F48C01', '#21D900'],
-          values :{
-              [paises[0]['pais_id']]: [paises[0][metrica][valorYear]],
-              [paises[1]['pais_id']]: [paises[1][metrica][valorYear]],
-              [paises[2]['pais_id']]: [paises[2][metrica][valorYear]],
-              [paises[3]['pais_id']]: [paises[3][metrica][valorYear]],
-              [paises[4]['pais_id']]: [paises[4][metrica][valorYear]],
-              [paises[5]['pais_id']]: [paises[5][metrica][valorYear]],
-              [paises[6]['pais_id']]: [paises[6][metrica][valorYear]],
-              [paises[7]['pais_id']]: [paises[7][metrica][valorYear]],
-          }
+          values :dataViz
       }  
   },);
-    dataMap = batman
+    dataMap = dataViz_default
   }
   
   onLoaderino = 0
@@ -250,5 +303,7 @@ const yearMetric = () => {
 
 yearMetric()
 
+
+// Listeners de los selectores que ejecutan la funcion "yearMetric()"
 $select.addEventListener("change", yearMetric);
 $year.addEventListener("change", yearMetric)

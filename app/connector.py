@@ -2,7 +2,7 @@
 from peewee import PostgresqlDatabase
 import os
 
-#Datos de conexion
+#Datos de conexion utilizando variables de entorno
 DBNAME = os.environ['DBNAME']
 DBUSER = os.environ['DBUSER']
 DBKEY = os.environ['DBKEY']
